@@ -1,0 +1,20 @@
+# Database settings
+db.driver=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://localhost:3306/sakila
+db.user=my_user
+db.password=my_secret_password
+
+# Prepared statement to retrieve the log entries from the database.
+# There are two parameters denoted by '?' which will be filled 
+# with the timestamp of the last run (1) and the current time (2). 
+db.statement=SELECT * FROM MY_LOGGING_TABLE WHERE DATE_FIELD >= ? AND DATE_FIELD < ? ORDER BY DATE_FIELD ASC
+
+# Graylog2 server settings
+graylog2.host=127.0.0.1
+graylog2.port=12201
+
+# Polling interval in seconds, default: 60
+pollingInterval=60
+
+# Mapping filename
+mappingsFile=mappings.properties

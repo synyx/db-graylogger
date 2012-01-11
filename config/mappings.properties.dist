@@ -1,0 +1,32 @@
+# This file describes the mapping from GELF message fields to database column names or fixed string literals.
+#
+# See https://github.com/Graylog2/graylog2-docs/wiki/GELF for a list of valid GELF
+# message fields.
+#
+# Format is:
+#     <GELF field>=${<Column name>}
+#     <GELF field>=fixed string
+#
+# Empty or missing lines mean that the fields aren't mapped.
+# short_message, host, and facility are MANDATORY!
+#
+
+# GELF default message fields
+short_message=${SHORT_MESSAGE}
+full_message=${FULL_MESSAGE}
+timestamp=${DATE_FIELD}
+
+# The level is the ordinal of a standard syslog message severity
+# See http://tools.ietf.org/html/rfc5424#section-6.2.1
+level=6
+
+line=0
+file=${FILENAME}
+facility=My custom facility
+host=${HOSTNAME}
+
+# Additional fields
+original_id=${ID}
+location=Location of system
+environment=Production
+application=My great Application
