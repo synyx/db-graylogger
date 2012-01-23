@@ -47,8 +47,13 @@ public class DbGraylogger {
         Runnable dbReader = new DatabaseReader(ps, gelfSender, mappings);
         ScheduledFuture<?> dbReaderHandle = scheduler.scheduleAtFixedRate(dbReader, 0, config.getPollingInterval(), TimeUnit.SECONDS);
 
+        // Endless loop to block the main thread from exiting
         while (!dbReaderHandle.isDone()) {
-            // Endless loop to block the main thread from exiting
+            try {
+                Thread.sleep(config.getPollingInterval() * 1000);
+            } catch (InterruptedException e) {
+                // ignore
+            }
         }
     }
 
